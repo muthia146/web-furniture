@@ -3,6 +3,7 @@ import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import { CartProvider } from "@/context/CartContext";
 import Navbar from "./components/Navbar";
+import Footer from "./components/Footer"; // 1. INI YANG DITAMBAHKAN DI ATAS
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -26,20 +27,16 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
-      >
-        {/* Provider harus membungkus semua komponen agar keranjang belanja berfungsi di semua halaman */}
+      <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
         <CartProvider>
-          {/* Navbar diletakkan di atas children agar selalu muncul di setiap halaman */}
           <Navbar />
           
-          {/* Konten halaman akan muncul di sini */}
-          <div className="pt-20"> 
+          {/* Pembungkus konten utama */}
+          <div className="pt-28 min-h-screen"> 
             {children}
           </div>
           
-          {/* Kamu bisa tambah Footer di bawah sini nanti */}
+          <Footer /> {/* 2. INI YANG DITAMBAHKAN DI BAWAH CHILDREN */}
         </CartProvider>
       </body>
     </html>
