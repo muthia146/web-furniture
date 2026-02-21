@@ -27,8 +27,8 @@ export default function Navbar() {
               <Link href="/category/home-decoration" className="text-[11px] uppercase tracking-[0.2em] text-stone-400 hover:text-amber-500 transition-colors">
                 Home Decor
               </Link>
-              <Link href="/category/lighting" className="text-[11px] uppercase tracking-[0.2em] text-stone-400 hover:text-amber-500 transition-colors">
-                Lighting
+              <Link href="/category/kitchen-accessories" className="text-[11px] uppercase tracking-[0.2em] text-stone-400 hover:text-amber-500 transition-colors">
+                Kitchen Accessories
               </Link>
             </div>
           </div>

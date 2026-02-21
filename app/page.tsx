@@ -1,9 +1,11 @@
 import Link from 'next/link';
 
 export default async function HomePage() {
-  const res = await fetch('https://dummyjson.com/products/category/furniture');
+  const res = await fetch('https://dummyjson.com/products?limit=100');
   const data = await res.json();
-  const products = data.products;
+  const products = data.products.filter((p: any) => 
+    ['furniture', 'home-decoration', 'kitchen-accessories'].includes(p.category)
+  );
 
   return (
     <main className="min-h-screen bg-[#1a1614]">

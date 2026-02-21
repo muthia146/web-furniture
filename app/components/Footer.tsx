@@ -22,7 +22,7 @@ export default function Footer() {
           </div>
   
           <div className="pt-12 text-[8px] text-stone-600 tracking-widest uppercase border-t border-stone-800/30">
-            © 2026 LUXÉ Atelier. All Rights Reserved. Crafted for PABP Assignment.
+            © 2026 LUXÉ Atelier. All Rights Reserved.
           </div>
         </div>
       </footer>
