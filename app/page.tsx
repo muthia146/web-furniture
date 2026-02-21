@@ -39,7 +39,7 @@ export default async function HomePage() {
       </section>
 
       {/* Grid Produk */}
-      <div className="max-w-7xl mx-auto py-24 px-6">
+      <div className="max-w-7xl mx-auto py-12 md:py-24 px-6">
         <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-12">
           {products.map((item: any) => (
             <Link href={`/product/${item.id}`} key={item.id} className="classic-card group rounded-2xl overflow-hidden p-6 hover:bg-stone-800/30 transition-all duration-500">

@@ -6,7 +6,7 @@ export default function WishlistPage() {
   const { wishlistItems, toggleWishlist } = useWishlist();
 
   return (
-    <div className="min-h-screen bg-[#f5f2ed] p-4 md:p-10 pt-32">
+    <div className="min-h-screen bg-[#f5f2ed] p-4 md:p-10 pt-10 md:pt-13">
       <div className="max-w-6xl mx-auto">
         <h1 className="text-3xl md:text-5xl font-serif mb-2 text-stone-900 tracking-tight">Your Wishlist</h1>
         <p className="text-amber-700 text-[10px] uppercase tracking-[0.4em] mb-12 font-bold">Saved Elegance</p>
