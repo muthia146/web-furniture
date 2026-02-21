@@ -1,19 +1,40 @@
 'use client';
 import { createContext, useContext, useState, ReactNode } from 'react';
 
-// Membuat context untuk keranjang belanja (State Management Kompleks)
-const CartContext = createContext<any>(null);
+type CartContextType = {
+  cartItems: any[];
+  cartCount: number;
+  addToCart: (product: any) => void;
+  removeFromCart: (productId: number) => void;
+};
+
+const CartContext = createContext<CartContextType | undefined>(undefined);
 
 export function CartProvider({ children }: { children: ReactNode }) {
-  const [cartCount, setCartCount] = useState(0);
+  const [cartItems, setCartItems] = useState<any[]>([]);
 
-  const addToCart = () => setCartCount((prev) => prev + 1);
+  const addToCart = (product: any) => {
+    setCartItems((prev) => [...prev, product]);
+  };
+
+  const removeFromCart = (productId: number) => {
+    setCartItems((prev) => prev.filter(item => item.id !== productId));
+  };
 
   return (
-    <CartContext.Provider value={{ cartCount, addToCart }}>
+    <CartContext.Provider value={{ 
+      cartItems, 
+      cartCount: cartItems.length, 
+      addToCart, 
+      removeFromCart 
+    }}>
       {children}
     </CartContext.Provider>
   );
 }
 
-export const useCart = () => useContext(CartContext);
+export const useCart = () => {
+  const context = useContext(CartContext);
+  if (!context) throw new Error("useCart must be used within CartProvider");
+  return context;
+};

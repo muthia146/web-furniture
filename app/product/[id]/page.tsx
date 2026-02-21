@@ -1,4 +1,6 @@
 import { use } from "react";
+import LikeButton from "@/app/components/LikeButton";
+import AddToCartButton from "@/app/components/AddToCartButton";
 
 export default async function ProductDetail({ params }: { params: Promise<{ id: string }> }) {
   const { id } = await params;
@@ -9,7 +11,7 @@ export default async function ProductDetail({ params }: { params: Promise<{ id: 
 
   return (
     // Background diubah ke Cream/Bone yang cerah tapi tetap hangat
-    <div className="min-h-screen bg-[#f5f2ed] text-stone-900 p-8 md:p-20">
+    <div className="min-h-screen bg-[#f5f2ed] text-stone-900 p-8 md:p-20 pt-32">
       <div className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-16 items-center">
         
         {/* Container Gambar: Putih bersih dengan bayangan lembut */}
@@ -25,7 +27,17 @@ export default async function ProductDetail({ params }: { params: Promise<{ id: 
         {/* Informasi Produk: Tipografi lebih tegas dan cerah */}
         <div className="flex flex-col space-y-8">
           <div className="space-y-2">
-            <span className="text-amber-700 tracking-[0.4em] text-[10px] uppercase font-bold">Premium Collection</span>
+            {/* INI YANG DITAMBAHKAN: Label Kategori Dinamis */}
+            <div className="flex items-center gap-3 mb-2">
+               <span className="text-amber-700 tracking-[0.4em] text-[10px] uppercase font-bold">
+                 Premium Collection
+               </span>
+               <span className="h-[1px] w-8 bg-amber-700/30"></span>
+               <span className="text-stone-400 tracking-[0.4em] text-[10px] uppercase">
+                 {product.category}
+               </span>
+            </div>
+
             <h1 className="text-5xl md:text-7xl font-serif text-stone-800 leading-tight">
               {product.title}
             </h1>
@@ -41,12 +53,8 @@ export default async function ProductDetail({ params }: { params: Promise<{ id: 
           </p>
 
           <div className="pt-6 flex gap-4">
-            <button className="flex-1 bg-stone-900 hover:bg-amber-800 text-white py-5 px-8 tracking-[0.2em] uppercase text-[11px] transition-all duration-500 shadow-xl">
-              Add to Selection
-            </button>
-            <button className="p-5 border border-stone-300 hover:border-amber-600 hover:text-amber-600 transition-all group">
-              <span className="text-xl group-hover:scale-125 inline-block transition-transform">❤</span>
-            </button>
+            <AddToCartButton product={product} /> 
+            <LikeButton product={product} />
           </div>
           
           <div className="flex gap-8 pt-4">
@@ -57,6 +65,11 @@ export default async function ProductDetail({ params }: { params: Promise<{ id: 
              <div className="text-center">
                 <p className="text-[10px] uppercase tracking-widest text-stone-400">Stock</p>
                 <p className="text-sm font-serif">{product.stock} units</p>
+             </div>
+             {/* Keterangan Tambahan Brand agar makin lengkap */}
+             <div className="text-center">
+                <p className="text-[10px] uppercase tracking-widest text-stone-400">Brand</p>
+                <p className="text-sm font-serif">{product.brand || 'Artisan Made'}</p>
              </div>
           </div>
         </div>
