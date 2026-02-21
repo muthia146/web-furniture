@@ -6,9 +6,9 @@ export default function WishlistPage() {
   const { wishlistItems, toggleWishlist } = useWishlist();
 
   return (
-    <div className="min-h-screen bg-[#f5f2ed] p-10 pt-32">
+    <div className="min-h-screen bg-[#f5f2ed] p-4 md:p-10 pt-32">
       <div className="max-w-6xl mx-auto">
-        <h1 className="text-5xl font-serif mb-2 text-stone-900 tracking-tight">Your Wishlist</h1>
+        <h1 className="text-3xl md:text-5xl font-serif mb-2 text-stone-900 tracking-tight">Your Wishlist</h1>
         <p className="text-amber-700 text-[10px] uppercase tracking-[0.4em] mb-12 font-bold">Saved Elegance</p>
         
         {wishlistItems.length === 0 ? (
@@ -19,10 +19,10 @@ export default function WishlistPage() {
             </Link>
           </div>
         ) : (
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10">
+          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4 md:gap-12">
             {wishlistItems.map((item: any) => (
-              <div key={item.id} className="group bg-white p-8 rounded-3xl shadow-sm border border-stone-200/60 hover:shadow-xl transition-all duration-500">
-                <div className="relative aspect-square mb-8 overflow-hidden rounded-2xl bg-stone-50 flex items-center justify-center">
+              <div key={item.id} className="group bg-white p-4 md:p-8 rounded-2xl md:rounded-3xl shadow-sm border border-stone-200/60 hover:shadow-xl transition-all duration-500">
+                <div className="relative aspect-square mb-4 md:mb-8 overflow-hidden rounded-xl bg-stone-50 flex items-center justify-center">
                   <img 
                     src={item.thumbnail} 
                     alt={item.title}
@@ -30,31 +30,30 @@ export default function WishlistPage() {
                   />
                 </div>
                 
-                <div className="space-y-3">
-                  {/* Warna Stone-900 dan Font Bold agar teks terbaca jelas */}
-                  <h2 className="font-serif text-2xl text-stone-900 font-bold leading-tight">{item.title}</h2>
+                <div className="space-y-2 md:space-y-3">
+                  {/* Judul dikecilkan di HP agar tidak meluber */}
+                  <h2 className="font-serif text-sm md:text-2xl text-stone-900 font-bold leading-tight line-clamp-1">{item.title}</h2>
                   
-                  {/* Harga dengan warna Amber yang lebih kontras */}
-                  <p className="text-amber-700 font-bold text-xl tracking-wide">${item.price}</p>
+                  {/* Harga dikecilkan di HP */}
+                  <p className="text-amber-700 font-bold text-xs md:text-xl tracking-wide">${item.price}</p>
                   
-                  <div className="pt-6 flex items-center justify-between border-t border-stone-100 mt-6">
+                  <div className="pt-4 flex flex-col md:flex-row items-start md:items-center justify-between border-t border-stone-100 mt-4 gap-2">
                     <Link 
                       href={`/product/${item.id}`} 
-                      className="text-[10px] uppercase tracking-[0.2em] font-bold text-stone-800 border-b-2 border-amber-600 pb-1 hover:text-amber-700 transition-colors"
+                      className="text-[8px] md:text-[10px] uppercase tracking-[0.1em] md:tracking-[0.2em] font-bold text-stone-800 border-b border-amber-600 pb-0.5"
                     >
                       View Detail
                     </Link>
                     
-                    {/* Tombol hapus agar wishlist fungsional */}
                     <button 
                       onClick={() => toggleWishlist(item)}
-                      className="text-stone-400 hover:text-red-700 transition-colors text-[10px] uppercase tracking-widest"
+                      className="text-stone-400 hover:text-red-700 transition-colors text-[8px] md:text-[10px] uppercase tracking-widest"
                     >
                       Remove
                     </button>
                   </div>
                 </div>
-              </div>
+              </div>  
             ))}
           </div>
         )}

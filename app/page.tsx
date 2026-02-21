@@ -40,7 +40,7 @@ export default async function HomePage() {
 
       {/* Grid Produk */}
       <div className="max-w-7xl mx-auto py-24 px-6">
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-12">
+        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-12">
           {products.map((item: any) => (
             <Link href={`/product/${item.id}`} key={item.id} className="classic-card group rounded-2xl overflow-hidden p-6 hover:bg-stone-800/30 transition-all duration-500">
               <div className="relative aspect-square flex items-center justify-center">
@@ -51,9 +51,11 @@ export default async function HomePage() {
                   alt={item.title}
                 />
               </div>
-              <div className="mt-8 text-center border-t border-stone-800/50 pt-6">
-                <h3 className="text-xl font-serif text-stone-100 group-hover:text-amber-500 transition-colors">{item.title}</h3>
-                <p className="text-amber-700 font-bold mt-2 tracking-[0.3em] uppercase text-xs">${item.price}</p>
+              <div className="mt-4 text-center border-t border-stone-800/50 pt-4">
+                <h3 className="text-sm md:text-xl font-serif text-stone-100 line-clamp-1">{item.title}</h3>
+                <p className="text-amber-700 font-bold mt-1 tracking-widest uppercase text-[9px] md:text-xs">
+                  ${item.price}
+                </p>
               </div>
             </Link>
           ))}
