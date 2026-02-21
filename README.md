@@ -1,36 +1,42 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+Nama : Muthia Anggraeni Rukmawan  
+NPM : 247006111029
 
-## Getting Started
+# LUXÉ Atelier - Premium Furniture Catalog
 
-First, run the development server:
+LUXÉ Atelier adalah aplikasi web katalog furnitur premium yang dibangun menggunakan **Next.js**. Dibuat untuk memenuhi tugas mata kuliah Pengembangan Aplikasi Berbasis Platform, dengan fokus pada implementasi berbagai teknik rendering modern dan manajemen state.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+## Fitur Utama & Implementasi Teknis
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+aplikasi ini mengimplementasikan:
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+### 1. Teknik Rendering (Modern Rendering Patterns)
+- **Static Site Generation (SSG):** Digunakan pada halaman beranda (`/`) untuk performa loading yang maksimal dan optimasi SEO.
+- **Server-Side Rendering (SSR):** Diterapkan pada halaman Kategori dan Detail Produk untuk memastikan data yang diambil dari API selalu dinamis dan terbaru.
+- **Client-Side Rendering (CSR):** Digunakan pada fitur interaktif seperti Wishlist dan Cart (Selection) untuk pengalaman pengguna yang *seamless*.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+### 2. Integrasi Sumber Data
+- Mengintegrasikan **DummyJSON API** (https://dummyjson.com/products) untuk menampilkan data produk secara dinamis (judul, harga, deskripsi, kategori, dan gambar).
 
-## Learn More
+### 3. State Management
+- **Context API:** Digunakan sebagai Global State Management untuk menangani fitur Keranjang Belanja (Selection) dan Wishlist di seluruh aplikasi.
+- **Local State (useState):** Digunakan untuk kontrol UI seperti dropdown menu dan interaksi tombol.
 
-To learn more about Next.js, take a look at the following resources:
+### 4. Fitur Tambahan (UI/UX & Optimization)
+- **Responsive Design:** Tampilan adaptif untuk perangkat Mobile dan Desktop (Grid 2 kolom pada mobile).
+- **Smart Back Button:** Navigasi pintar yang mengingat riwayat halaman pengguna.
+- **Glassmorphism UI:** Desain modern menggunakan Tailwind CSS dengan efek backdrop-blur pada Navbar.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## 🛠️ Teknologi yang Digunakan
+- **Framework:** Next.js (App Router)
+- **Styling:** Tailwind CSS
+- **State:** React Context API
+- **Deployment:** Vercel
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## 📸 Demo Aplikasi
+- **Live Demo:** https://luxe-atelier-furniture.vercel.app/
 
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## 📝 Cara Menjalankan Secara Lokal
+1. Clone repository ini.
+2. Jalankan `npm install` untuk menginstall dependensi.
+3. Jalankan `npm run dev` untuk memulai server pengembangan.
+4. Buka `http://localhost:3000` di browser Anda.
