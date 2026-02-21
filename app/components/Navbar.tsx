@@ -1,11 +1,14 @@
 'use client';
+import { useState } from 'react';
 import { useCart } from "@/context/CartContext";
 import { useWishlist } from "@/context/WishlistContext";
 import Link from 'next/link';
 
+
 export default function Navbar() {
   const { cartCount } = useCart();
   const { wishlistCount } = useWishlist();
+  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
 
   return (
     <nav className="fixed top-0 w-full z-50 px-4 md:px-10 py-5 md:py-7 flex justify-between items-center bg-[#1a1614]/95 backdrop-blur-md border-b border-white/5 font-serif">
@@ -17,14 +20,47 @@ export default function Navbar() {
         {/* Link Collection tetap ada tapi jarak huruf (tracking) dipersempit di HP */}
         <Link href="/" className="hover:text-amber-500 transition block">Collection</Link>
         
-        {/* Menu Categories */}
-        <div className="relative group py-2">
-          <button className="hover:text-amber-500 transition uppercase outline-none">Categories</button>
-          <div className="absolute hidden group-hover:block group-active:block bg-stone-900 p-4 top-full left-[-80px] md:left-0 w-48 shadow-2xl border border-white/5 z-50">
-            <div className="flex flex-col gap-3">
-              <Link href="/category/furniture" className="text-[11px] uppercase tracking-[0.2em] text-stone-400 hover:text-amber-500 transition-colors">Furniture</Link>
-              <Link href="/category/home-decoration" className="text-[11px] uppercase tracking-[0.2em] text-stone-400 hover:text-amber-500 transition-colors">Home Decor</Link>
-              <Link href="/category/kitchen-accessories" className="text-[11px] uppercase tracking-[0.2em] text-stone-400 hover:text-amber-500 transition-colors">Kitchen Accessories</Link>
+        {/* Menu Categories - Sekarang Stabil di HP */}
+        <div 
+          className="relative py-2"
+          onMouseEnter={() => setIsDropdownOpen(true)} // Untuk Desktop: Muncul saat hover
+          onMouseLeave={() => setIsDropdownOpen(false)} // Untuk Desktop: Hilang saat kursor keluar
+        >
+          <button 
+            onClick={() => setIsDropdownOpen(!isDropdownOpen)} // Khusus HP: Klik untuk buka/tutup
+            className="hover:text-amber-500 transition uppercase outline-none flex items-center gap-1"
+          >
+            Categories 
+            <span className={`text-[8px] transition-transform ${isDropdownOpen ? 'rotate-180' : ''}`}>↓</span>
+          </button>
+
+          {/* Panel Dropdown - Muncul berdasarkan state isDropdownOpen */}
+          <div className={`
+            absolute bg-stone-900 p-5 top-full left-[-60px] md:left-0 w-48 shadow-2xl border border-white/10 z-50 transition-all duration-200
+            ${isDropdownOpen ? 'opacity-100 visible translate-y-0' : 'opacity-0 invisible -translate-y-2'}
+          `}>
+            <div className="flex flex-col gap-4">
+              <Link 
+                href="/category/furniture" 
+                onClick={() => setIsDropdownOpen(false)} // Tutup dropdown setelah pilih
+                className="text-[10px] md:text-[11px] uppercase tracking-[0.2em] text-stone-400 hover:text-amber-500 transition-colors"
+              >
+                Furniture
+              </Link>
+              <Link 
+                href="/category/home-decoration" 
+                onClick={() => setIsDropdownOpen(false)}
+                className="text-[10px] md:text-[11px] uppercase tracking-[0.2em] text-stone-400 hover:text-amber-500 transition-colors"
+              >
+                Home Decor
+              </Link>
+              <Link 
+                href="/category/kitchen-accessories" 
+                onClick={() => setIsDropdownOpen(false)}
+                className="text-[10px] md:text-[11px] uppercase tracking-[0.2em] text-stone-400 hover:text-amber-500 transition-colors"
+              >
+                Kitchen Accessories
+              </Link>
             </div>
           </div>
         </div>
